@@ -1,10 +1,26 @@
 <template>
-  <div class="block">Click Here {{ delay }}</div>
+  <div class="block" v-if="showBlock">Click Here {{ delay }}</div>
 </template>
 
 <script>
 export default {
   props: ["delay"],
+  data() {
+    return {
+      showBlock: false,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showBlock = true; //update
+    }, this.delay);
+  },
+  updated() {
+    console.log("update");
+  },
+  unmounted() {
+    console.log("unmounted"); //is apperar when remove blockMdal from APP.uve
+  },
 };
 </script>
 
